@@ -8,11 +8,11 @@ import com.xc.enums.ResultEnum;
  * @date：2017年10月19日 下午10:15:58 
  * @Description:
  */
-public class UserException extends RuntimeException{
+public class ExampleException extends RuntimeException{
 
     private Integer code;
 
-    public UserException(ResultEnum resultEnum) {
+    public ExampleException(ResultEnum resultEnum) {
         super(resultEnum.getMsg());
         this.code = resultEnum.getCode();
     }

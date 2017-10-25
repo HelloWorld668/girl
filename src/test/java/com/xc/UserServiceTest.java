@@ -1,7 +1,7 @@
 package com.xc;
 
-import com.xc.domain.User;
-import com.xc.service.UserService;
+import com.xc.domain.Example;
+import com.xc.service.ExampleService;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,11 +16,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class UserServiceTest {
 
     @Autowired
-    private UserService userService;
+    private ExampleService userService;
 
     @Test
     public void findOneTest() {
-        User girl = userService.findOne(73);
+        Example girl = userService.findOne(73);
         Assert.assertEquals(new Integer(13), girl.getId());
     }
 }

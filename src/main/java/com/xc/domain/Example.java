@@ -1,5 +1,8 @@
 package com.xc.domain;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,7 +14,7 @@ import javax.validation.constraints.NotNull;
  * @Description:
  */
 @Entity
-public class User {
+public class Example{
     @Id
     @GeneratedValue
     private Integer id;
@@ -24,7 +27,13 @@ public class User {
     //@Length(min=6, max=24)
     private String passWord;
     
-    public User() {
+
+    @Column(columnDefinition = "timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private  Date gmtModified;
+    
+    private  Date gmtCreate;
+
+    public Example() {
     }
 
     /**
@@ -68,6 +77,33 @@ public class User {
     public void setPassWord(String passWord) {
         this.passWord = passWord;
     }
-    
-    
+
+    /**
+     * @return the gmtModified
+     */
+    public Date getGmtModified() {
+        return gmtModified;
+    }
+
+    /**
+     * @param gmtModified the gmtModified to set
+     */
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = new Date();
+    }
+
+    /**
+     * @return the gmtCreate
+     */
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    /**
+     * @param gmtCreate the gmtCreate to set
+     */
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
 }

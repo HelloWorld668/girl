@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import com.xc.dao.UserDao;
+import com.xc.dao.ExampleDao;
+import com.xc.domain.Example;
 import com.xc.domain.Result;
-import com.xc.domain.User;
-import com.xc.service.UserService;
+import com.xc.service.ExampleService;
 import com.xc.utils.ResultUtil;
 
 import javax.validation.Valid;
@@ -21,29 +21,29 @@ import java.util.List;
  * 
  */
 @RestController
-public class UserController {
+public class ExampleController {
     /** 
      * @author xiong
      * @date：2017年10月19日 下午10:15:58 
      * @Description:
      */
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger logger = LoggerFactory.getLogger(ExampleController.class);
 
     @Autowired
-    private UserDao userDao;
+    private ExampleDao userDao;
 
     @Autowired
-    private UserService userService;
+    private ExampleService userService;
 
     @GetMapping(value = "/users")
-    public List<User> userList() {
+    public List<Example> userList() {
         logger.info("userList");
 
         return userDao.findAll();
     }
 
     @PostMapping(value = "/users")
-    public Result<User> userAdd(@Valid User user, BindingResult bindingResult) {
+    public Result<Example> userAdd(@Valid Example user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResultUtil.error(1, bindingResult.getFieldError().getDefaultMessage());
         }
@@ -55,15 +55,15 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/{id}")
-    public User userFindOne(@PathVariable("id") Integer id) {
+    public Example userFindOne(@PathVariable("id") Integer id) {
         return userDao.findOne(id);
     }
 
     @PutMapping(value = "/user/{id}")
-    public User userUpdate(@PathVariable("id") Integer id,
+    public Example userUpdate(@PathVariable("id") Integer id,
                            @RequestParam("passWord") String passWord,
                            @RequestParam("userName") String userName) {
-        User user = new User();
+        Example user = new Example();
         user.setId(id);
         user.setUserName(userName);
         user.setPassWord(passWord);
@@ -77,7 +77,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/users/age/{id}")
-    public List<User> userListByAge(@PathVariable("id") Integer id) {
+    public List<Example> userListByAge(@PathVariable("id") Integer id) {
         return userDao.findById(id);
     }
 

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.xc.dao.UserDao;
-import com.xc.domain.User;
+import com.xc.dao.ExampleDao;
+import com.xc.domain.Example;
 import com.xc.enums.ResultEnum;
-import com.xc.exception.UserException;
+import com.xc.exception.ExampleException;
 
 /** 
  * @author xiong
@@ -15,35 +15,35 @@ import com.xc.exception.UserException;
  * @Description:
  */
 @Service
-public class UserService {
+public class ExampleService {
     @Autowired
-    private UserDao userDao;
+    private ExampleDao userDao;
     
     @Transactional
     public void insertTwo() {
-        User user = new User();
+        Example user = new Example();
         user.setUserName("helloworld");
         user.setPassWord("******");
         userDao.save(user);
 
 
-        User userb = new User();
+        Example userb = new Example();
         userb.setUserName("admin");
         userb.setPassWord("******");
         userDao.save(userb);
     }
 
     public void getUserName(Integer id) throws Exception{
-        User user = userDao.findOne(id);
+        Example user = userDao.findOne(id);
         String userName = user.getUserName();
         if ("helloworld".equalsIgnoreCase(userName)) {
-            throw new UserException(ResultEnum.CHE_DAN);
+            throw new ExampleException(ResultEnum.CHE_DAN);
         }else if ("admin".equalsIgnoreCase(userName)) {
-            throw new UserException(ResultEnum.DA_YE);
+            throw new ExampleException(ResultEnum.DA_YE);
         }
     }
    
-    public User findOne(Integer id) {
+    public Example findOne(Integer id) {
         return userDao.findOne(id);
     }
 }

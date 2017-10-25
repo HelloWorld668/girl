@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xc.domain.Result;
-import com.xc.exception.UserException;
+import com.xc.exception.ExampleException;
 import com.xc.utils.ResultUtil;
 
 /** 
@@ -23,8 +23,8 @@ public class ExceptionHandle {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result handle(Exception e) {
-        if (e instanceof UserException) {
-            UserException userException = (UserException) e;
+        if (e instanceof ExampleException) {
+            ExampleException userException = (ExampleException) e;
             return ResultUtil.error(userException.getCode(), userException.getMessage());
         }else {
             logger.error("【系统异常】{}", e);

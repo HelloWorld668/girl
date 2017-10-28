@@ -31,6 +31,7 @@ public class Example{
     @Column(columnDefinition = "timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
     private  Date gmtModified;
     
+    @Column(columnDefinition="timestamp NULL DEFAULT CURRENT_TIMESTAMP")
     private  Date gmtCreate;
 
     public Example() {

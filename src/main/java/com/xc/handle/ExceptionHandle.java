@@ -22,7 +22,7 @@ public class ExceptionHandle {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public Result handle(Exception e) {
+    public Result<?> handle(Exception e) {
         if (e instanceof ExampleException) {
             ExampleException userException = (ExampleException) e;
             return ResultUtil.error(userException.getCode(), userException.getMessage());

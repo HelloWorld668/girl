@@ -10,6 +10,10 @@ import com.xc.enums.ResultEnum;
  */
 public class ExampleException extends RuntimeException{
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -4856090059324466527L;
     private Integer code;
 
     public ExampleException(ResultEnum resultEnum) {

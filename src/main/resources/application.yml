@@ -2,7 +2,10 @@ spring:
   profiles:
     active: dev
   datasource:
-    
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://:3306/spider
+    username: admin
+    password: 
   jpa:
     hibernate:
       ddl-auto: update

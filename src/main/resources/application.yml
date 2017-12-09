@@ -4,9 +4,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://:3306/spider
-    username: admin
+    username: 
     password: 
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false

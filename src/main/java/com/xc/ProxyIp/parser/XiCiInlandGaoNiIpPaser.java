@@ -14,5 +14,5 @@ import com.xc.ProxyIp.domain.XiCiInlandGaoNiIpPage;
  */
 @Component
 public interface XiCiInlandGaoNiIpPaser {
-    XiCiInlandGaoNiIpPage parserPage(String url) throws ClientProtocolException, IOException ;
+    XiCiInlandGaoNiIpPage parserPage(Integer pageNo) throws ClientProtocolException, IOException ;
 }

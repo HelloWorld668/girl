@@ -1,7 +1,6 @@
 package com.xc.utils;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -9,13 +8,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.config.RequestConfig;
-import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 /**
  * @author xiong
@@ -53,7 +49,8 @@ public class HttpClientUtils {
         }
         return responseBody;
     }
-    public static String getWithProxy(String url,String ipAddress,Integer port,String type) throws ClientProtocolException, IOException{
+    public static String getWithProxy(String url,String ipAddress,Integer port,String type) 
+            throws ClientProtocolException, IOException{
 
         String responseBody;
         CloseableHttpClient httpclient = HttpClients.createDefault();
@@ -89,6 +86,7 @@ public class HttpClientUtils {
         return responseBody;
     
     }
+    
     private static void addHeader(HttpGet httpget) {
         // httpget.addHeader("Accept",
         // "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8");
@@ -103,8 +101,5 @@ public class HttpClientUtils {
         // httpget.addHeader("Upgrade-Insecure-Requests","1");
     }
 
-    public static void main(String[] args) throws Exception {
-        String withProxy = getWithProxy("http://www.xicidaili.com/nn/153","51.15.195.177",3128,"http");
-        System.out.println(withProxy);
-    }
+    
 }

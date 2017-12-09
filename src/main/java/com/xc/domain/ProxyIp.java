@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-/** 
+/**
  * @author xiong
- * @date：2017年10月28日 下午8:38:34 
+ * @date：2017年10月28日 下午8:38:34
  * @Description:
  */
 @Entity
 public class ProxyIp {
-    
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -26,7 +26,31 @@ public class ProxyIp {
     private String type;
     private String speed;
     private String connectionTime;
-    
+    private String aliveDays;
+    private String verifyMinutes;
+    private Integer status;
+
+    @Column(insertable = false, updatable = false,columnDefinition = "timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
+    private Date gmtModified;
+
+    @Column(insertable = false, updatable = false,columnDefinition = "timestamp NULL DEFAULT CURRENT_TIMESTAMP")
+    private Date gmtCreate;
+
+   
+    /**
+     * @return the status
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     /**
      * @return the speed
      */
@@ -35,7 +59,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param speed the speed to set
+     * @param speed
+     *            the speed to set
      */
     public void setSpeed(String speed) {
         this.speed = speed;
@@ -49,20 +74,12 @@ public class ProxyIp {
     }
 
     /**
-     * @param connectionTime the connectionTime to set
+     * @param connectionTime
+     *            the connectionTime to set
      */
     public void setConnectionTime(String connectionTime) {
         this.connectionTime = connectionTime;
     }
-
-    private String aliveDays;
-    private String verifyMinutes;
-    
-    @Column(columnDefinition = "timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP")
-    private  Date gmtModified;
-    
-    @Column(columnDefinition="timestamp NULL DEFAULT CURRENT_TIMESTAMP")
-    private  Date gmtCreate;
 
     /**
      * @return the id
@@ -72,7 +89,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param id the id to set
+     * @param id
+     *            the id to set
      */
     public void setId(Integer id) {
         this.id = id;
@@ -86,7 +104,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param country the country to set
+     * @param country
+     *            the country to set
      */
     public void setCountry(String country) {
         this.country = country;
@@ -100,7 +119,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param ipAddress the ipAddress to set
+     * @param ipAddress
+     *            the ipAddress to set
      */
     public void setIpAddress(String ipAddress) {
         this.ipAddress = ipAddress;
@@ -114,7 +134,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param port the port to set
+     * @param port
+     *            the port to set
      */
     public void setPort(String port) {
         this.port = port;
@@ -128,7 +149,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param serverAddress the serverAddress to set
+     * @param serverAddress
+     *            the serverAddress to set
      */
     public void setServerAddress(String serverAddress) {
         this.serverAddress = serverAddress;
@@ -142,7 +164,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param gaoni the gaoni to set
+     * @param gaoni
+     *            the gaoni to set
      */
     public void setGaoni(Boolean gaoni) {
         this.gaoni = gaoni;
@@ -156,7 +179,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param type the type to set
+     * @param type
+     *            the type to set
      */
     public void setType(String type) {
         this.type = type;
@@ -170,7 +194,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param aliveDays the aliveDays to set
+     * @param aliveDays
+     *            the aliveDays to set
      */
     public void setAliveDays(String aliveDays) {
         this.aliveDays = aliveDays;
@@ -184,7 +209,8 @@ public class ProxyIp {
     }
 
     /**
-     * @param verifyMinutes the verifyMinutes to set
+     * @param verifyMinutes
+     *            the verifyMinutes to set
      */
     public void setVerifyMinutes(String verifyMinutes) {
         this.verifyMinutes = verifyMinutes;
@@ -198,10 +224,11 @@ public class ProxyIp {
     }
 
     /**
-     * @param gmtModified the gmtModified to set
+     * @param gmtModified
+     *            the gmtModified to set
      */
     public void setGmtModified(Date gmtModified) {
-        this.gmtModified = gmtModified;
+        this.gmtModified = new Date();
     }
 
     /**
@@ -212,13 +239,16 @@ public class ProxyIp {
     }
 
     /**
-     * @param gmtCreate the gmtCreate to set
+     * @param gmtCreate
+     *            the gmtCreate to set
      */
     public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
+        this.gmtCreate = new Date();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see java.lang.Object#toString()
      */
     @Override
@@ -254,5 +284,4 @@ public class ProxyIp {
         return builder.toString();
     }
 
-    
 }

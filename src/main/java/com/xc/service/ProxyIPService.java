@@ -12,4 +12,6 @@ import com.xc.ProxyIp.domain.XiCiInlandGaoNiIpPage;
 @Service
 public interface ProxyIPService {
     void saveProxyIPByXiCiInlandGaoNiIpPage(XiCiInlandGaoNiIpPage xiCiInlandGaoNiIpPage);
+    
+    long countTotalUnknowProxyIp();
 }

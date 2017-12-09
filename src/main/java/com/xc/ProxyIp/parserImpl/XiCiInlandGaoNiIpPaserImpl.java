@@ -9,6 +9,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
@@ -16,8 +18,10 @@ import com.mysql.jdbc.StringUtils;
 import com.xc.ProxyIp.domain.XiCiInlandGaoNiIpPage;
 import com.xc.ProxyIp.parser.XiCiInlandGaoNiIpPaser;
 import com.xc.domain.ProxyIp;
+import com.xc.enums.ProxyIpStatusEunm;
 import com.xc.enums.SpiderEnum;
 import com.xc.exception.SpiderException;
+import com.xc.job.ProxyIpJob;
 import com.xc.utils.HttpClientUtils;
 
 /** 
@@ -27,12 +31,16 @@ import com.xc.utils.HttpClientUtils;
  */
 @Component
 public class XiCiInlandGaoNiIpPaserImpl implements XiCiInlandGaoNiIpPaser{
-
+    
+    private static String URL_PREFIX = "http://www.xicidaili.com/nn/";
+    private final static Logger logger = LoggerFactory.getLogger(XiCiInlandGaoNiIpPaserImpl.class);
+    
     @Override
-    public XiCiInlandGaoNiIpPage parserPage(String url) throws ClientProtocolException, IOException {
+    public XiCiInlandGaoNiIpPage parserPage(Integer pageNo) throws ClientProtocolException, IOException {
         XiCiInlandGaoNiIpPage xiCiInlandGaoNiIpPage = new XiCiInlandGaoNiIpPage();
-        String pageStr = HttpClientUtils.getWithProxy(url,"51.15.195.177",3128,"http");
-        
+        //String pageStr = HttpClientUtils.getWithProxy(url,"51.15.195.177",3128,"http");
+        String pageStr = HttpClientUtils.get(URL_PREFIX+pageNo);
+        logger.info("spider task:"+URL_PREFIX+pageNo);
         if(StringUtils.isNullOrEmpty(pageStr)){
             throw new SpiderException(SpiderEnum.RESULT_NULL);
         }
@@ -55,6 +63,9 @@ public class XiCiInlandGaoNiIpPaserImpl implements XiCiInlandGaoNiIpPaser{
         trs.remove(0);
         for (Element tr : trs) {
             proxyIP = new ProxyIp();
+            
+            proxyIP.setStatus(ProxyIpStatusEunm.UNKNOW.getCode());
+            proxyIP.setCheckTimes(0);
             
             Elements tds = tr.children();
             

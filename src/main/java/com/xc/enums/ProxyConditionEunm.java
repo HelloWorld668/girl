@@ -5,7 +5,7 @@ package com.xc.enums;
  * @Description:
  */
 public enum ProxyConditionEunm {
-    ZHIHU("","")
+    ZHIHU("www.zhihu.com","")
     ;
     private String url;
     private String content;
